@@ -214,12 +214,13 @@ class TumblrRestClient(object):
     def drafts(self, blogname, **kwargs):
         """
         Gets posts that are currently in the blog's drafts
+        :param before_id: in int, the id for drafts you want before, for pagination.
         :param filter: the post format that you want returned: HTML, text, raw.
 
         :returns: a dict created from the JSON response
         """
         url = "/v2/blog/{0}/posts/draft".format(blogname)
-        return self.send_api_request("get", url, kwargs, ['filter'])
+        return self.send_api_request("get", url, kwargs, ['before_id', 'filter'])
 
     @validate_blogname
     def submission(self, blogname, **kwargs):
